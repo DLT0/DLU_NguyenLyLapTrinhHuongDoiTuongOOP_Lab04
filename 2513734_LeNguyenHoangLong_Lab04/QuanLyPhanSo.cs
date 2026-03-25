@@ -12,6 +12,7 @@ namespace _2513734_LeNguyenHoangLong_Lab04
         {
             Thoat,
             ThemPS,
+
             NhapDSPS,
             NhapCD,
             DocDS,
@@ -23,6 +24,7 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             TimMax,
             SapXepTang,
             SapXepGiam,
+            ChenPSTaiViTri,
         }
 
         static QuanLyPhanSo ql = new QuanLyPhanSo();
@@ -42,6 +44,7 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimMax, "Tim DS Phan So co Gia Tri MAX");
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepTang, "Sap xep danh sach tang");
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepGiam, "Sap xep danh sach giam");
+            Console.WriteLine("{0} de {1}: ", (int)MenuCT.ChenPSTaiViTri, "Chen phan so tai vi tri index");
         }
 
         static MenuCT ChonMenu()
@@ -49,9 +52,9 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             int chon;
             do
             {
-                Console.WriteLine("Nhap {0} <= chon <= {1}", (int)MenuCT.Thoat, (int)MenuCT.SapXepGiam);
+                Console.WriteLine("Nhap {0} <= chon <= {1}", (int)MenuCT.Thoat, (int)MenuCT.ChenPSTaiViTri);
                 chon = int.Parse(Console.ReadLine());
-                if ((int)MenuCT.Thoat <= chon && chon <= (int)MenuCT.SapXepGiam)
+                if ((int)MenuCT.Thoat <= chon && chon <= (int)MenuCT.ChenPSTaiViTri)
                     break;
             } while (true);
 
@@ -67,6 +70,21 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 case MenuCT.ThemPS:
                     Console.WriteLine("Chuc nang: Them mot phan so:");
                     ql.Them(NhapPhanSo());
+                    ql.XuatDS();
+                    break;
+                case MenuCT.ChenPSTaiViTri:
+                    Console.WriteLine("Chuc nang: Chen phan so tai vi tri index:");
+                    Console.Write("Nhap index can chen (0..{0}): ", ql.dsPhanSo.Count);
+                    int index = int.Parse(Console.ReadLine());
+                    PhanSo psChen = NhapPhanSo();
+                    if (ql.ChenPSTaiViTri(index, psChen))
+                    {
+                        Console.WriteLine("Chen thanh cong.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Index khong hop le.");
+                    }
                     ql.XuatDS();
                     break;
                 case MenuCT.NhapCD:
@@ -359,6 +377,18 @@ namespace _2513734_LeNguyenHoangLong_Lab04
         public void SapXepGiamDan()
         {
             this.dsPhanSo.Sort((ps1, ps2) => ((double)ps2).CompareTo((double)ps1));
+        }
+
+
+        public bool ChenPSTaiViTri(int index, PhanSo ps)
+        {
+            if (index < 0 || index > this.dsPhanSo.Count)
+            {
+                return false;
+            }
+
+            this.dsPhanSo.Insert(index, ps);
+            return true;
         }
     }
 }
