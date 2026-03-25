@@ -114,10 +114,13 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                     ql.TimDSPStheoPS();
                     break;
                 case MenuCT.TinhTong:
-                    Console.WriteLine("Chuc nang chua duoc cai dat.");
+                    Console.WriteLine("Chuc nang: Tinh Tong DS Phan So Tra Ve So Thuc ");
+                    double sum = ql.TongDSPS();
+                    Console.WriteLine("Tong cac phan so la: " + sum);
                     break;
                 case MenuCT.TimMax:
-                    Console.WriteLine("");
+                    Console.WriteLine("Chuc nang: Danh sach phan so co gia tri MAX: ");
+                    ql.TimMax();
                     break;
             }
         }
@@ -251,6 +254,19 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 if (maucantim == ps.Mau)
                     kq.Add(ps);
             }
+
+            if (kq.Count == 0)
+            {
+                Console.WriteLine("Khong tim thay phan so nao co mau = " + maucantim);
+                return;
+            }
+
+            Console.WriteLine("Danh sach phan so co mau = " + maucantim + ":");
+            for (int i = 0; i < kq.Count; i++)
+            {
+                Console.Write(kq[i] + "\t");
+            }
+            Console.WriteLine();
         }
         public void TimDSPStheoPS()
         {
@@ -260,12 +276,63 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             int tuX = int.Parse(Console.ReadLine());
             Console.WriteLine("Nhap mau can tim: ");
             int mauX = int.Parse(Console.ReadLine());
+            PhanSo psCanTim = new PhanSo(tuX, mauX);
+
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
                 PhanSo ps = this.dsPhanSo[i];
-                if (mauX == ps.Mau && tuX == ps.Tu)
+                if (ps == psCanTim)
                     kq.Add(ps);
             }
+
+            if (kq.Count == 0)
+            {
+                Console.WriteLine("Khong tim thay phan so nao bang " + psCanTim);
+                return;
+            }
+
+            Console.WriteLine("Danh sach phan so bang " + psCanTim + ":");
+            for (int i = 0; i < kq.Count; i++)
+            {
+                Console.Write(kq[i] + "\t");
+            }
+            Console.WriteLine();
+        }
+
+        public double TongDSPS()
+        {
+            double kq = 0;
+            for (int i = 0; i < this.dsPhanSo.Count; i++)
+            {
+                kq += (double)this.dsPhanSo[i];
+            }
+            return kq;
+        }
+
+        public void TimMax()
+        {
+            PhanSo max = this.dsPhanSo[0];
+            List<PhanSo> kq = new List<PhanSo>();
+            for (int i = 0; i < this.dsPhanSo.Count; i++)
+            {
+                if ((double)max < (double)this.dsPhanSo[i])
+                {
+                    max = this.dsPhanSo[i];
+                }
+            }
+            for (int i = 0; i < this.dsPhanSo.Count; i++)
+            {
+                if ((double)max == (double)this.dsPhanSo[i])
+                {
+                    kq.Add(this.dsPhanSo[i]);
+                }
+            }
+            Console.WriteLine("Danh Sach phan so co gia tri MAX la: ");
+            for (int i = 0; i < kq.Count; i++)
+            {
+                Console.Write(kq[i] + "\t");
+            }
+            Console.WriteLine();
         }
     }
 }
