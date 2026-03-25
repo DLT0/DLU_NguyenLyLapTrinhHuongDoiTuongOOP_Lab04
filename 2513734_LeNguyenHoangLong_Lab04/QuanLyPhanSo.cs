@@ -21,6 +21,8 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             TimPSTheoPS,
             TinhTong,
             TimMax,
+            SapXepTang,
+            SapXepGiam,
         }
 
         static QuanLyPhanSo ql = new QuanLyPhanSo();
@@ -38,6 +40,8 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimPSTheoPS, "Tim DS Phan So = PS x");
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.TinhTong, "Tinh Tong DS Phan So Tra Ve So Thuc");
             Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimMax, "Tim DS Phan So co Gia Tri MAX");
+            Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepTang, "Sap xep danh sach tang");
+            Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepGiam, "Sap xep danh sach giam");
         }
 
         static MenuCT ChonMenu()
@@ -45,9 +49,9 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             int chon;
             do
             {
-                Console.WriteLine("Nhap {0} <= chon <= {1}", (int)MenuCT.Thoat, (int)MenuCT.TimMax);
+                Console.WriteLine("Nhap {0} <= chon <= {1}", (int)MenuCT.Thoat, (int)MenuCT.SapXepGiam);
                 chon = int.Parse(Console.ReadLine());
-                if ((int)MenuCT.Thoat <= chon && chon <= (int)MenuCT.TimMax)
+                if ((int)MenuCT.Thoat <= chon && chon <= (int)MenuCT.SapXepGiam)
                     break;
             } while (true);
 
@@ -121,6 +125,19 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 case MenuCT.TimMax:
                     Console.WriteLine("Chuc nang: Danh sach phan so co gia tri MAX: ");
                     ql.TimMax();
+                    break;
+                case MenuCT.SapXepTang:
+                    Console.WriteLine("Chuc nang: Sap xep danh sach phan so tang ");
+                    ql.SapXepTang();
+                    Console.WriteLine("Danh sach sau khi sap xep la: ");
+
+                    ql.XuatDS();
+                    break;
+                case MenuCT.SapXepGiam:
+                    Console.WriteLine("Chuc nang: Sap xep danh sach phan so giam ");
+                    ql.SapXepGiamDan();
+                    Console.WriteLine("Danh sach sau khi sap xep la: ");
+                    ql.XuatDS();
                     break;
             }
         }
@@ -333,6 +350,15 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 Console.Write(kq[i] + "\t");
             }
             Console.WriteLine();
+        }
+        public void SapXepTang()
+        {
+            this.dsPhanSo.Sort((ps1, ps2) => ((double)ps1).CompareTo((double)ps2));
+        }
+
+        public void SapXepGiamDan()
+        {
+            this.dsPhanSo.Sort((ps1, ps2) => ((double)ps2).CompareTo((double)ps1));
         }
     }
 }
