@@ -1,5 +1,6 @@
 ### LAB 4: QUẢN LÝ DANH SÁCH PHÂN SỐ
 
+---
 
 ## BÀI TẬP
 ```
@@ -22,6 +23,10 @@
       o Toán tử ép kiểu:
  Chuyển phân số thành số thực (tường minh)
  Chuyển số nguyên thành phân số (không tường minh)
+```
+---
+
+```
 2. Xây dựng lớp QuanLyPhanSo gồm:
 2.1. Thành phần trường dữ liệu: o Danh sách phân số: ArrayList
 2.2. Đóng gói dữ liệu với thuộc tính:
@@ -44,7 +49,8 @@
 2.3.13.Tìm danh sách phân số có giá trị Max.
 2.3.14.Sắp xếp danh sách phân số tăng.
 2.3.15.Sắp xếp danh sách phân số giảm dần.
-2.3.16.Chèn phân số tại vị trí index.
+2.3.16.Chèn phân số tại vị trí index. -> Hiện tại
 2.3.17.Xóa phân số có giá trị nhỏ nhất.
 2.3.18.Xóa tất cả phân số có giá trị nhỏ nhất
 ```
+---
