@@ -1,0 +1,14 @@
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/bin/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/bin/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.deps.json
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/bin/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.runtimeconfig.json
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/bin/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.dll
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/bin/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.pdb
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.GeneratedMSBuildEditorConfig.editorconfig
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.AssemblyInfoInputs.cache
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.AssemblyInfo.cs
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.csproj.CoreCompileInputs.cache
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.dll
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/refint/2513734_LeNguyenHoangLong_Lab04.dll
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.pdb
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/2513734_LeNguyenHoangLong_Lab04.genruntimeconfig.cache
+/media/hoangminhduong/DATA/HocTap/NamNhat/HK2/NLLTHDT/2513734_LeNguyenHoangLong_Lab04/2513734_LeNguyenHoangLong_Lab04/obj/Debug/net10.0/ref/2513734_LeNguyenHoangLong_Lab04.dll
