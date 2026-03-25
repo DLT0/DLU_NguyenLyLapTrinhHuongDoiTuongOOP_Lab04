@@ -4,7 +4,7 @@
 
 ## BÀI TẬP
 ```
-**1. Xây dựng lớp phân số gồm:**
+## 1. Xây dựng lớp phân số gồm:
     1.1. Thành phần trường dữ liệu: mẫu, tử
     1.2. Đóng gói dữ liệu với thuộc tính:
       o Mẫu: (mẫu !=0)
@@ -27,7 +27,7 @@
 ---
 
 ```
-**2. Xây dựng lớp QuanLyPhanSo gồm:**
+## 2. Xây dựng lớp QuanLyPhanSo gồm:
     2.1. Thành phần trường dữ liệu: o Danh sách phân số: ArrayList
     2.2. Đóng gói dữ liệu với thuộc tính:
           o Số phần tử của danh sách phân số
@@ -49,7 +49,7 @@
     2.3.13.Tìm danh sách phân số có giá trị Max.
     2.3.14.Sắp xếp danh sách phân số tăng.
     2.3.15.Sắp xếp danh sách phân số giảm dần.
-    2.3.16.Chèn phân số tại vị trí index. -> Hiện tại
+    2.3.16.Chèn phân số tại vị trí index. -> *Hiện tại*
     2.3.17.Xóa phân số có giá trị nhỏ nhất.
     2.3.18.Xóa tất cả phân số có giá trị nhỏ nhất
 ```
