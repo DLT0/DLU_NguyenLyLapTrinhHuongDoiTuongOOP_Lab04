@@ -1,181 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
-namespace _2513734_LeNguyenHoangLong_Lab04
+namespace Lab04
 {
     class QuanLyPhanSo
     {
         private List<PhanSo> dsPhanSo = new List<PhanSo>();
-
-        public enum MenuCT
-        {
-            Thoat,
-            ThemPS,
-
-            NhapDSPS,
-            NhapCD,
-            DocDS,
-            XuatDS,
-            RutGonDS,
-            TimPSTheoMau,
-            TimPSTheoPS,
-            TinhTong,
-            TimMax,
-            SapXepTang,
-            SapXepGiam,
-            ChenPSTaiViTri,
-        }
-
         static QuanLyPhanSo ql = new QuanLyPhanSo();
 
-        static void XuatMenu()
-        {
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.Thoat, "Thoat chuong trinh");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.ThemPS, "Them phan so");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.NhapDSPS, "Nhap DS Phan So Tu ban Phim");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.NhapCD, "Nhap CD 10 phan so");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.DocDS, "Doc DS Phan So tu File");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.XuatDS, "Xuat DS Phan So");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.RutGonDS, "Rut gon DS Phan So");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimPSTheoMau, "Tim DS Phan So Co Mau = t");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimPSTheoPS, "Tim DS Phan So = PS x");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.TinhTong, "Tinh Tong DS Phan So Tra Ve So Thuc");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.TimMax, "Tim DS Phan So co Gia Tri MAX");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepTang, "Sap xep danh sach tang");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.SapXepGiam, "Sap xep danh sach giam");
-            Console.WriteLine("{0} de {1}: ", (int)MenuCT.ChenPSTaiViTri, "Chen phan so tai vi tri index");
-        }
-
-        static MenuCT ChonMenu()
-        {
-            int chon;
-            do
-            {
-                Console.WriteLine("Nhap {0} <= chon <= {1}", (int)MenuCT.Thoat, (int)MenuCT.ChenPSTaiViTri);
-                chon = int.Parse(Console.ReadLine());
-                if ((int)MenuCT.Thoat <= chon && chon <= (int)MenuCT.ChenPSTaiViTri)
-                    break;
-            } while (true);
-
-            return (MenuCT)chon;
-        }
-
-        static void XuLyMenu(MenuCT chon)
-        {
-            switch (chon)
-            {
-                case MenuCT.Thoat:
-                    break;
-                case MenuCT.ThemPS:
-                    Console.WriteLine("Chuc nang: Them mot phan so:");
-                    ql.Them(NhapPhanSo());
-                    ql.XuatDS();
-                    break;
-                case MenuCT.ChenPSTaiViTri:
-                    Console.WriteLine("Chuc nang: Chen phan so tai vi tri index:");
-                    Console.Write("Nhap index can chen (0..{0}): ", ql.dsPhanSo.Count);
-                    int index = int.Parse(Console.ReadLine());
-                    PhanSo psChen = NhapPhanSo();
-                    if (ql.ChenPSTaiViTri(index, psChen))
-                    {
-                        Console.WriteLine("Chen thanh cong.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Index khong hop le.");
-                    }
-                    ql.XuatDS();
-                    break;
-                case MenuCT.NhapCD:
-                    Console.WriteLine("Chuc nang: Nhap CD 10 phan so:");
-                    Console.WriteLine("Danh sach phan so ban dau:");
-                    ql.XuatDS();
-                    ql.NhapCD();
-                    Console.WriteLine("Danh sach phan so sau khi nhap co dinh:");
-                    ql.XuatDS();
-                    break;
-                case MenuCT.NhapDSPS:
-                    Console.WriteLine("Nhap so luong phan tu can them vao danh sach:");
-                    int n = int.Parse(Console.ReadLine());
-                    for (int i = 0; i < n; i++)
-                    {
-                        Console.WriteLine("Nhap phan so thu {0} : ", i + 1);
-                        ql.Them(NhapPhanSo());
-                    }
-                    Console.WriteLine("\nDanh Sach Phan so moi: ");
-                    ql.XuatDS();
-                    break;
-                case MenuCT.DocDS:
-                    if (ql.DocDS())
-                    {
-                        Console.WriteLine("Doc danh sach thanh cong:");
-                        ql.XuatDS();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Khong tim thay file dsphanso.txt.");
-                    }
-                    break;
-                case MenuCT.RutGonDS:
-                    Console.WriteLine("Chuc nang: Rut gon DS Phan So:");
-                    Console.WriteLine("Danh sach truoc khi rut gon:");
-                    ql.XuatDS();
-                    ql.RutGonDS();
-                    Console.WriteLine("\nDanh sach sau khi rut gon:");
-                    ql.XuatDS();
-                    break;
-                case MenuCT.XuatDS:
-                    Console.WriteLine("Chuc nang: Xuat DS Phan So:");
-                    ql.XuatDS();
-                    break;
-                case MenuCT.TimPSTheoMau:
-                    ql.TimDSPStheoMau();
-                    break;
-                case MenuCT.TimPSTheoPS:
-                    ql.TimDSPStheoPS();
-                    break;
-                case MenuCT.TinhTong:
-                    Console.WriteLine("Chuc nang: Tinh Tong DS Phan So Tra Ve So Thuc ");
-                    double sum = ql.TongDSPS();
-                    Console.WriteLine("Tong cac phan so la: " + sum);
-                    break;
-                case MenuCT.TimMax:
-                    Console.WriteLine("Chuc nang: Danh sach phan so co gia tri MAX: ");
-                    ql.TimMax();
-                    break;
-                case MenuCT.SapXepTang:
-                    Console.WriteLine("Chuc nang: Sap xep danh sach phan so tang ");
-                    ql.SapXepTang();
-                    Console.WriteLine("Danh sach sau khi sap xep la: ");
-
-                    ql.XuatDS();
-                    break;
-                case MenuCT.SapXepGiam:
-                    Console.WriteLine("Chuc nang: Sap xep danh sach phan so giam ");
-                    ql.SapXepGiamDan();
-                    Console.WriteLine("Danh sach sau khi sap xep la: ");
-                    ql.XuatDS();
-                    break;
-            }
-        }
-
-        public static void ChayChuongTrinh()
-        {
-            MenuCT chon;
-            do
-            {
-                Console.Clear();
-                XuatMenu();
-                chon = ChonMenu();
-                if (chon == MenuCT.Thoat)
-                    break;
-                XuLyMenu(chon);
-                Console.ReadKey();
-            } while (true);
-        }
-
-        static PhanSo NhapPhanSo()
+        public static PhanSo NhapPhanSo()
         {
             Console.Write("Nhap tu so: ");
             int t = int.Parse(Console.ReadLine());
@@ -184,20 +21,6 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             return new PhanSo(t, m);
         }
 
-        public void Them(PhanSo ps)
-        {
-            this.dsPhanSo.Add(ps);
-        }
-
-        public void NhapCD()
-        {
-            Random rand = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                this.Them(new PhanSo(rand.Next(1, 10), rand.Next(1, 10)));
-            }
-            Console.WriteLine("\nDa them danh sach co dinh.");
-        }
 
         public void XuatDS()
         {
@@ -206,38 +29,38 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 Console.Write(this.dsPhanSo[i] + "\t");
             }
         }
-
-        public bool DocDS()
+        public void Them(PhanSo ps)
         {
-            string duongDan = Path.Combine(Directory.GetCurrentDirectory(), "dsphanso.txt");
+            this.dsPhanSo.Add(ps);
+        }
 
-            if (!File.Exists(duongDan))
+        public void NhapDSPhanSo()
+        {
+            Console.Write("\nNhap so luong phan so can them: ");
+            int n = int.Parse(Console.ReadLine());
+            for (int i = 0; i < n; i++)
             {
-                return false;
+                Console.WriteLine("\nNhap phan so thu {0}", i + 1);
+                this.Them(NhapPhanSo());
             }
-
-            List<PhanSo> dsMoi = new List<PhanSo>();
-
-            string[] phantu = File.ReadAllText(duongDan)
-                .Split(new char[] { ' ', '\t', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-            for (int i = 0; i < phantu.Length; i++)
+        }
+        public void DocFile(string duongdan)
+        {
+            this.dsPhanSo.Clear();
+            if (File.Exists(duongdan))
             {
-                string[] parts = phantu[i].Split('/');
-                if (parts.Length != 2)
+                string[] lines = File.ReadAllLines(duongdan);
+                foreach (string line in lines)
                 {
-                    continue;
+                    Them((PhanSo)line.Trim());
                 }
+                Console.WriteLine("Doc file thanh cong!");
 
-                int tu, mau;
-                if (int.TryParse(parts[0], out tu) && int.TryParse(parts[1], out mau))
-                {
-                    dsMoi.Add(new PhanSo(tu, mau));
-                }
             }
-
-            this.dsPhanSo = dsMoi;
-            return true;
+            else
+            {
+                Console.WriteLine("File khong ton tai");
+            }
         }
 
         private int UCLN(int a, int b)
@@ -276,119 +99,166 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             }
         }
 
-        public void TimDSPStheoMau()
+        public void NhapCD()
+        {
+            Random rd = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                this.Them(new PhanSo(rd.Next(1, 10), rd.Next(1, 10)));
+                // this.Them(new PhanSo(18, 8));
+            }
+
+        }
+
+        public void TimPSTheoMauX()
         {
             List<PhanSo> kq = new List<PhanSo>();
-            Console.WriteLine("Nhap mau can tim: ");
-            int maucantim = int.Parse(Console.ReadLine());
-
+            Console.Write("\nNhap Mau can tim: ");
+            int MauX = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
                 PhanSo ps = this.dsPhanSo[i];
-                if (maucantim == ps.Mau)
+                if (ps.Mau == MauX)
+                {
                     kq.Add(ps);
+                }
             }
 
             if (kq.Count == 0)
             {
-                Console.WriteLine("Khong tim thay phan so nao co mau = " + maucantim);
+                Console.WriteLine("Khong tim thay phan so co mau = " + MauX);
                 return;
-            }
 
-            Console.WriteLine("Danh sach phan so co mau = " + maucantim + ":");
-            for (int i = 0; i < kq.Count; i++)
+            }
+            else
             {
-                Console.Write(kq[i] + "\t");
+                for (int i = 0; i < kq.Count; i++)
+                {
+                    Console.Write(kq[i] + "\t");
+                }
             }
             Console.WriteLine();
         }
-        public void TimDSPStheoPS()
+
+        public void TimPSTheoPSX()
         {
+            PhanSo psCanTim = new PhanSo();
+            Console.WriteLine("Nhap Phan So Can tim: ");
+            psCanTim = NhapPhanSo();
+
             List<PhanSo> kq = new List<PhanSo>();
-
-            Console.WriteLine("Nhap tu can tim: ");
-            int tuX = int.Parse(Console.ReadLine());
-            Console.WriteLine("Nhap mau can tim: ");
-            int mauX = int.Parse(Console.ReadLine());
-            PhanSo psCanTim = new PhanSo(tuX, mauX);
-
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
                 PhanSo ps = this.dsPhanSo[i];
-                if (ps == psCanTim)
+                if (psCanTim == ps)
+                {
                     kq.Add(ps);
+                }
             }
 
             if (kq.Count == 0)
             {
-                Console.WriteLine("Khong tim thay phan so nao bang " + psCanTim);
+                Console.WriteLine("Khong co phan so ban can tim trong ds");
                 return;
-            }
 
-            Console.WriteLine("Danh sach phan so bang " + psCanTim + ":");
-            for (int i = 0; i < kq.Count; i++)
+            }
+            else
             {
-                Console.Write(kq[i] + "\t");
+                for (int i = 0; i < kq.Count; i++)
+                {
+                    Console.WriteLine(kq[i] + "\t");
+                }
             }
             Console.WriteLine();
         }
 
         public double TongDSPS()
         {
-            double kq = 0;
+            double sum = 0;
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
-                kq += (double)this.dsPhanSo[i];
+                sum += (double)this.dsPhanSo[i];
             }
-            return kq;
+            return sum;
         }
 
         public void TimMax()
         {
-            PhanSo max = this.dsPhanSo[0];
             List<PhanSo> kq = new List<PhanSo>();
+
+            PhanSo max = this.dsPhanSo[0];
+
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
-                if ((double)max < (double)this.dsPhanSo[i])
+                if (this.dsPhanSo[i] > max)
                 {
                     max = this.dsPhanSo[i];
                 }
+
             }
             for (int i = 0; i < this.dsPhanSo.Count; i++)
             {
-                if ((double)max == (double)this.dsPhanSo[i])
+                if (this.dsPhanSo[i] == max)
                 {
                     kq.Add(this.dsPhanSo[i]);
                 }
             }
-            Console.WriteLine("Danh Sach phan so co gia tri MAX la: ");
+            Console.WriteLine("Danh sach phan so co gia tri Max voi max = {0}", max);
             for (int i = 0; i < kq.Count; i++)
             {
                 Console.Write(kq[i] + "\t");
             }
-            Console.WriteLine();
         }
+
         public void SapXepTang()
         {
             this.dsPhanSo.Sort((ps1, ps2) => ((double)ps1).CompareTo((double)ps2));
+            Console.WriteLine("Sap xep danh sach tang thanh cong!");
         }
 
-        public void SapXepGiamDan()
+        public void SapXepGiam()
         {
             this.dsPhanSo.Sort((ps1, ps2) => ((double)ps2).CompareTo((double)ps1));
+            Console.WriteLine("Sap xep danh sach giam thanh cong!");
         }
 
-
-        public bool ChenPSTaiViTri(int index, PhanSo ps)
+        public bool ChenPS(int index, PhanSo ps)
         {
             if (index < 0 || index > this.dsPhanSo.Count)
             {
                 return false;
             }
-
             this.dsPhanSo.Insert(index, ps);
             return true;
+        }
+
+        public void Xoa1Min()
+        {
+            PhanSo psmin = this.dsPhanSo[0];
+            for (int i = 1; i < this.dsPhanSo.Count; i++)
+            {
+                if (this.dsPhanSo[i] < psmin)
+                {
+                    psmin = this.dsPhanSo[i];
+                }
+            }
+            this.dsPhanSo.Remove(psmin);
+            Console.WriteLine("\nXoa phan so {0} thanh cong!", psmin);
+        }
+
+        public void XoaAllMin()
+        {
+            PhanSo psmin = this.dsPhanSo[0];
+            for (int i = 1; i < this.dsPhanSo.Count; i++)
+            {
+                if (this.dsPhanSo[i] < psmin)
+                {
+                    psmin = this.dsPhanSo[i];
+                }
+            }
+            this.dsPhanSo.RemoveAll(n => n == psmin);
+            Console.WriteLine("\nXoa toan bo phan so {0} thanh cong!", psmin);
         }
     }
 }
