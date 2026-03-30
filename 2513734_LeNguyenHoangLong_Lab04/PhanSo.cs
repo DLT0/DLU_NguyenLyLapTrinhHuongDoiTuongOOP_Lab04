@@ -1,25 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.IO;
 
-namespace _2513734_LeNguyenHoangLong_Lab04
+namespace Lab04
 {
     class PhanSo
     {
-        int tu;
-        int mau;
+        //int tu;
+        private int mau;
 
-
-        public int Tu
-        {
-            get;
-            set;
-        }
-
-        private List<PhanSo> dsPhanSo = new List<PhanSo>();
+        public int Tu { get; set; }
 
         public int Mau
         {
@@ -31,20 +21,23 @@ namespace _2513734_LeNguyenHoangLong_Lab04
                 this.mau = value;
             }
         }
+        private List<PhanSo> dsPhanSo = new List<PhanSo>();
 
 
-        // Phuong thuc tao lap phan so khong co tham so
+        #region PhuongThuc
         public PhanSo()
         {
             this.Tu = 0;
             this.Mau = 1;
-        }
 
+        }
         public PhanSo(int tu, int mau)
         {
             this.Tu = tu;
             this.Mau = mau;
+
         }
+
         public PhanSo this[int index]
         {
             get { return this.dsPhanSo[index]; }
@@ -59,32 +52,65 @@ namespace _2513734_LeNguyenHoangLong_Lab04
         public static PhanSo operator +(PhanSo ps1, PhanSo ps2)
         {
             PhanSo kq = new PhanSo();
-            kq.Tu = ps1.Tu * ps2.Mau + ps2.Tu * ps1.Mau;
+            kq.Tu = ps1.Tu * ps2.Mau + ps1.Mau * ps2.Tu;
             kq.Mau = ps1.Mau * ps2.Mau;
             return kq;
         }
 
-        public static PhanSo operator +(PhanSo ps, int a)
+        public static PhanSo operator +(PhanSo ps1, int a)
         {
-            return new PhanSo(a, 1) + ps;
+            return new PhanSo(a, 1) + ps1;
+
         }
-        public static PhanSo operator +(int a, PhanSo ps)
+        public static PhanSo operator +(int a, PhanSo ps1)
         {
-            return a + ps;
+            return new PhanSo(a, 1) + ps1;
+
         }
 
-        public static PhanSo operator ++(PhanSo ps)
+        public static PhanSo operator ++(PhanSo ps1)
+        {
+            return ps1 + 1;
+        }
+        public static PhanSo operator --(PhanSo ps1)
+        {
+            return ps1 + (-1);
+        }
+
+        public static PhanSo operator *(PhanSo ps1, PhanSo ps2)
         {
             PhanSo kq = new PhanSo();
-            kq = ps + 1;
-            return ps;
+            kq.Tu = ps1.Tu * ps2.Tu;
+            kq.Mau = ps1.Mau * ps2.Mau;
+            return kq;
         }
-        public static PhanSo operator --(PhanSo ps)
+
+        public static PhanSo operator *(PhanSo ps1, int a)
         {
             PhanSo kq = new PhanSo();
-            kq = ps + (-1);
-            return ps;
+            kq.Tu = ps1.Tu * a;
+            kq.Mau = ps1.Mau;
+            return kq;
         }
+        public static PhanSo operator *(int a, PhanSo ps1)
+        {
+            return ps1 * a;
+        }
+
+        public static PhanSo operator /(PhanSo ps1, PhanSo ps2)
+        {
+            return ps1 * new PhanSo(ps2.Mau, ps2.Tu);
+        }
+
+        public static PhanSo operator /(PhanSo ps1, int a)
+        {
+            return ps1 * new PhanSo(1, a);
+        }
+        public static PhanSo operator /(int a, PhanSo ps1)
+        {
+            return new PhanSo(a, 1) * ps1;
+        }
+
         public static bool operator >(PhanSo ps1, PhanSo ps2)
         {
             return ps1.Tu * ps2.Mau > ps1.Mau * ps2.Tu;
@@ -93,13 +119,14 @@ namespace _2513734_LeNguyenHoangLong_Lab04
         {
             return ps1.Tu * ps2.Mau < ps1.Mau * ps2.Tu;
         }
+
         public static bool operator ==(PhanSo ps1, PhanSo ps2)
         {
-            return ps1.Tu * ps2.Mau == ps1.Mau * ps2.Tu;
+            return ps1.Tu * ps2.Mau == ps2.Tu * ps1.Mau;
         }
         public static bool operator !=(PhanSo ps1, PhanSo ps2)
         {
-            return ps1.Tu * ps2.Mau != ps1.Mau * ps2.Tu;
+            return ps1.Tu * ps2.Mau != ps2.Tu * ps1.Mau;
         }
 
         public static implicit operator PhanSo(int n)
@@ -111,25 +138,11 @@ namespace _2513734_LeNguyenHoangLong_Lab04
             return (double)ps.Tu / ps.Mau;
         }
 
-        public void Them(PhanSo ps)
+        public static explicit operator PhanSo(string s)
         {
-            this.dsPhanSo.Add(ps);
+            string[] ss = s.Split("/");
+            return new PhanSo(int.Parse(ss[0]), int.Parse(ss[1]));
         }
-        public void NhapCD()
-        {
-            Random rand = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                this.Them(new PhanSo(rand.Next(1, 10), rand.Next(1, 10)));
-            }
-            Console.WriteLine("Da them danh sach co dinh.");
-        }
-        public void XuatDS()
-        {
-            for(int i = 0; i < this.dsPhanSo.Count; i++)
-            {
-                Console.Write(this[i] + "\t");
-            }
-        }
-    } 
+        #endregion
+    }
 }
